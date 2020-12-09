@@ -30,7 +30,14 @@ export default function ExploreScreen() {
   return (
     <View style={styles.container}>
       <HeaderBar title="Explore" />
-      <MapView style={styles.map} />
+      <MapView style={styles.map}>
+        <MapView.Marker
+          coordinate={{
+            latitude: -8.65,
+            longitude: 115.216667,
+          }}
+        />
+      </MapView>
       <FlatList
         horizontal
         style={styles.slider}
@@ -44,6 +51,7 @@ export default function ExploreScreen() {
         showsHorizontalScrollIndicator={false}
         renderItem={() => <PostCardHorizontal width={POST_CARD_WIDTH} />}
         pagingEnabled
+        decelerationRate={0.88}
         snapToInterval={POST_CARD_WIDTH + 16}
         snapToAlignment="start"
       />
