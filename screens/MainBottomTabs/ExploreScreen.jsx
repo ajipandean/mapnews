@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import MapView from 'react-native-maps';
+import { View, StyleSheet } from 'react-native';
 
 import useTheme from '../../hooks/useTheme';
 import HeaderBar from '../../components/HeaderBar';
@@ -11,11 +12,14 @@ export default function ExploreScreen() {
       flex: 1,
       backgroundColor: colors.surface,
     },
+    map: {
+      flex: 1,
+    },
   });
   return (
     <View style={styles.container}>
       <HeaderBar title="Explore" />
-      <Text>Explore screen</Text>
+      <MapView style={styles.map} />
     </View>
   );
 }
