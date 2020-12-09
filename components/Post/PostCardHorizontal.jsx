@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { Text, Image } from 'react-native-elements';
 
 import useTheme from '../../hooks/useTheme';
@@ -40,7 +40,10 @@ export default function PostCardHorizontal({ width }) {
     },
   });
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      android_ripple={{ color: colors.placeholder }}
+    >
       <Image
         style={styles.photo}
         source={{
@@ -53,6 +56,6 @@ export default function PostCardHorizontal({ width }) {
         <Text style={styles.author}>Pandean Mertayasa</Text>
         <Text style={styles.timestamps}>Selasa, 23 April 2020 at 13:00</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
