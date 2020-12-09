@@ -52,9 +52,14 @@ export default function PostCardHorizontal({ width }) {
         }}
       />
       <View style={styles.post}>
-        <Text style={styles.title}>Tabrakan Parah! Mobil vs Truk</Text>
+        <Text numberOfLines={3} style={styles.title}>
+          Tabrakan Parah! Mobil vs Truk Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit. Id repellendus distinctio eligendi, quidem non et
+          modi nostrum, veritatis, saepe quibusdam harum doloremque ex aliquid
+          sapiente autem explicabo, mollitia vero. Officia?
+        </Text>
         <Text style={styles.author}>Pandean Mertayasa</Text>
-        <Text style={styles.timestamps}>Selasa, 23 April 2020 at 13:00</Text>
+        <Text style={styles.timestamps}>Tue, 23 Apr 2020 at 13:00</Text>
       </View>
     </Pressable>
   );
