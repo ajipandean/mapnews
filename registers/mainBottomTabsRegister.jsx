@@ -23,6 +23,7 @@ export default [
     component: CreatePostScreen,
     options: {
       title: 'Create',
+      tabBarVisible: false,
     },
   },
   {

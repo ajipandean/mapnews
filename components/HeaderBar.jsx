@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Header, Text } from 'react-native-elements';
 
-export default function RootStackHeader() {
+export default function HeaderBar({ title }) {
   const styles = StyleSheet.create({
     container: {
       elevation: 4,
@@ -22,7 +22,7 @@ export default function RootStackHeader() {
         type: 'material-community',
         onPress: () => {},
       }}
-      centerComponent={() => <Text h4>Mapnews</Text>}
+      centerComponent={() => <Text h4>{title}</Text>}
     />
   );
 }
