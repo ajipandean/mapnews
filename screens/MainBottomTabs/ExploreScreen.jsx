@@ -29,7 +29,19 @@ export default function ExploreScreen() {
   });
   return (
     <View style={styles.container}>
-      <HeaderBar title="Explore" />
+      <HeaderBar
+        title="Explore"
+        leftComponent={{
+          icon: 'magnify',
+          type: 'material-community',
+          onPress: () => {},
+        }}
+        rightComponent={{
+          icon: 'plus-box-outline',
+          type: 'material-community',
+          onPress: () => {},
+        }}
+      />
       <MapView style={styles.map}>
         <MapView.Marker
           coordinate={{
