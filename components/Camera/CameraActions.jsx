@@ -4,7 +4,11 @@ import { Icon } from 'react-native-elements';
 
 import useTheme from '../../hooks/useTheme';
 
-export default function CameraActions({ toggleCameraType }) {
+export default function CameraActions({
+  flashIcon,
+  toggleFlashMode,
+  toggleCameraType,
+}) {
   const { colors } = useTheme();
   const styles = StyleSheet.create({
     actions: {
@@ -32,9 +36,9 @@ export default function CameraActions({ toggleCameraType }) {
   });
   return (
     <View style={styles.actions}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={toggleFlashMode}>
         <Icon
-          name="flash"
+          name={flashIcon}
           type="material-community"
           color={colors.surface}
           size={32}
