@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements';
 
 import useTheme from '../../hooks/useTheme';
 
-export default function CameraActions() {
+export default function CameraActions({ toggleCameraType }) {
   const { colors } = useTheme();
   const styles = StyleSheet.create({
     actions: {
@@ -43,7 +43,7 @@ export default function CameraActions() {
       <TouchableOpacity style={styles.capture}>
         <View style={styles.inner_capture} />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={toggleCameraType}>
         <Icon
           name="camera-party-mode"
           type="material-community"
