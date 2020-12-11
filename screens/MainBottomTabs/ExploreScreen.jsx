@@ -1,10 +1,12 @@
 import React from 'react';
 import MapView from 'react-native-maps';
+import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import {
   View, FlatList, StyleSheet, Dimensions,
 } from 'react-native';
 
+import useToastError from '../../hooks/useToastError';
 import useTheme from '../../hooks/useTheme';
 import HeaderBar from '../../components/HeaderBar';
 import PostCardHorizontal from '../../components/Post/PostCardHorizontal';
@@ -29,6 +31,17 @@ export default function ExploreScreen() {
       bottom: 0,
     },
   });
+
+  async function handleCamera() {
+    try {
+      const { granted } = await Camera.requestPermissionsAsync();
+      if (granted) navigate('camera');
+      if (!granted) throw new Error('No access to camera');
+    } catch (err) {
+      useToastError(err);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <HeaderBar
@@ -41,7 +54,7 @@ export default function ExploreScreen() {
         rightComponent={{
           icon: 'plus-box-outline',
           type: 'material-community',
-          onPress: () => navigate('camera'),
+          onPress: handleCamera,
         }}
       />
       <MapView style={styles.map}>
