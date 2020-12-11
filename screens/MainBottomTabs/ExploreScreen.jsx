@@ -1,5 +1,6 @@
 import React from 'react';
 import MapView from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 import {
   View, FlatList, StyleSheet, Dimensions,
 } from 'react-native';
@@ -14,6 +15,7 @@ const POST_CARD_INSET = width * 0.1 - 5;
 
 export default function ExploreScreen() {
   const { colors } = useTheme();
+  const { navigate } = useNavigation();
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -39,7 +41,7 @@ export default function ExploreScreen() {
         rightComponent={{
           icon: 'plus-box-outline',
           type: 'material-community',
-          onPress: () => {},
+          onPress: () => navigate('camera'),
         }}
       />
       <MapView style={styles.map}>
