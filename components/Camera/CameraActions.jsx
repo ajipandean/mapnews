@@ -12,10 +12,6 @@ export default function CameraActions({
   const { colors } = useTheme();
   const styles = StyleSheet.create({
     actions: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      bottom: 0,
       flexDirection: 'row',
       paddingVertical: 24,
       alignItems: 'center',
