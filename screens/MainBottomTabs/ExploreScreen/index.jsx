@@ -2,35 +2,17 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
-import {
-  View, FlatList, StyleSheet, Dimensions,
-} from 'react-native';
+import { View, FlatList } from 'react-native';
 
-import useToastError from '../../hooks/useToastError';
-import useTheme from '../../hooks/useTheme';
-import HeaderBar from '../../components/HeaderBar';
-import PostCardHorizontal from '../../components/PostCardHorizontal';
-
-const { width } = Dimensions.get('window');
-const POST_CARD_WIDTH = width * 0.8;
-const POST_CARD_INSET = width * 0.1 - 5;
+import styles from './styles';
+import consts from './consts';
+import useToastError from '../../../hooks/useToastError';
+import HeaderBar from '../../../components/HeaderBar';
+import PostCardHorizontal from '../../../components/PostCardHorizontal';
 
 export default function ExploreScreen() {
-  const { colors } = useTheme();
   const { navigate } = useNavigation();
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.surface,
-    },
-    map: { flex: 1 },
-    slider: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      bottom: 0,
-    },
-  });
+  const s = styles();
 
   async function handleCamera() {
     try {
@@ -43,7 +25,7 @@ export default function ExploreScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={s.container}>
       <HeaderBar
         title="Explore"
         leftComponent={{
@@ -57,7 +39,7 @@ export default function ExploreScreen() {
           onPress: handleCamera,
         }}
       />
-      <MapView style={styles.map}>
+      <MapView style={s.map}>
         <MapView.Marker
           coordinate={{
             latitude: -8.65,
@@ -67,19 +49,19 @@ export default function ExploreScreen() {
       </MapView>
       <FlatList
         horizontal
-        style={styles.slider}
+        style={s.slider}
         data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
         keyExtractor={(item, index) => `${item}-${index}`}
         contentContainerStyle={{
-          paddingHorizontal: POST_CARD_INSET - 4,
+          paddingHorizontal: consts.POST_CARD_INSET - 4,
           paddingVertical: 16,
         }}
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
-        renderItem={() => <PostCardHorizontal width={POST_CARD_WIDTH} />}
+        renderItem={() => <PostCardHorizontal width={consts.POST_CARD_WIDTH} />}
         pagingEnabled
         decelerationRate={0.88}
-        snapToInterval={POST_CARD_WIDTH + 16}
+        snapToInterval={consts.POST_CARD_WIDTH + 16}
         snapToAlignment="start"
       />
     </View>
