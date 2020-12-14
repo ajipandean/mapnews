@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,9 @@ import CameraActions from '../../../components/CameraActions';
 import GoBackWithMessage from '../../../components/GoBackWithMessage';
 
 export default function CameraScreen() {
+  const cameraRef = useRef(null);
   const { goBack } = useNavigation();
+  const [photos, setPhotos] = useState([]);
   const [hasPermission, setHasPermission] = useState(true);
   const [type, setType] = useState(consts.TYPE_BACK);
   const [flash, setFlash] = useState(consts.FLASH_OFF);
@@ -36,6 +38,7 @@ export default function CameraScreen() {
   return (
     <View style={s.container}>
       <Camera
+        ref={cameraRef}
         ratio="16:9"
         pictureSize="1:1"
         style={s.camera}
@@ -61,6 +64,9 @@ export default function CameraScreen() {
         <View style={s.bottom_container}>
           <ImagesSlider />
           <CameraActions
+            photos={photos}
+            cameraRef={cameraRef}
+            setPhotos={setPhotos}
             flashIcon={flash === consts.FLASH_OFF ? 'flash-off' : 'flash'}
             toggleCameraType={() => setType(
               type === consts.TYPE_BACK ? consts.TYPE_FRONT : consts.TYPE_BACK,
