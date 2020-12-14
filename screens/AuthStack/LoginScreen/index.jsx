@@ -1,9 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-elements';
+import Constants from 'expo-constants';
 
-export default () => (
-  <View>
-    <Text>THis is login</Text>
-  </View>
-);
+import loginScreenStyles from './styles';
+
+import LoginFormInput from '../../../components/LoginFormInput';
+
+export default () => {
+  const styles = loginScreenStyles({
+    statusBarHeight: Constants.statusBarHeight,
+  });
+
+  return (
+    <View style={styles.container}>
+      <LoginFormInput />
+    </View>
+  );
+};
