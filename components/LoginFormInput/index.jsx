@@ -10,7 +10,8 @@ export default () => {
   return (
     <>
       <Input
-        label="Email"
+        label="Alamat email"
+        placeholder="ashiap@example.com"
         containerStyle={styles.no_horizontal_padding}
         leftIcon={{
           name: 'at',
@@ -19,7 +20,8 @@ export default () => {
         }}
       />
       <Input
-        label="Password"
+        label="Kata sandi"
+        placeholder="********"
         containerStyle={styles.no_horizontal_padding}
         leftIcon={{
           name: 'lock-outline',
@@ -34,7 +36,7 @@ export default () => {
         }}
       />
       <View>
-        <Button title="Login" buttonStyle={styles.pills_radius} />
+        <Button title="Masuk" buttonStyle={styles.pills_radius} />
       </View>
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-elements';
 import Constants from 'expo-constants';
 
 import loginScreenStyles from './styles';
@@ -14,6 +15,9 @@ export default () => {
   return (
     <View style={styles.container}>
       <LoginFormInput />
+      <TouchableOpacity style={styles.top_spaced}>
+        <Text style={[styles.helper]}>Belum punya akun? Daftar disini</Text>
+      </TouchableOpacity>
     </View>
   );
 };
