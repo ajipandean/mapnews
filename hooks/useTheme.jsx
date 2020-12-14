@@ -6,6 +6,7 @@ export default () => ({
   },
   colors: {
     primary: '#0779e4',
+    secondary: '#ea6227',
     placeholder: '#888',
     divider: '#e0e0e0',
     surface: '#fff',
