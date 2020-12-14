@@ -4,7 +4,7 @@ import { Input, Button } from 'react-native-elements';
 
 import loginFormInputStyles from './styles';
 
-export default () => {
+export default ({ mode }) => {
   const [shown, setShown] = useState(false);
 
   const styles = loginFormInputStyles();
@@ -38,9 +38,28 @@ export default () => {
           onPress: () => setShown(!shown),
         }}
       />
+      {mode === 'register' ? (
+        <Input
+          secureTextEntry={!shown}
+          label="Konfirmasi kata sandi"
+          placeholder="********"
+          containerStyle={[styles.no_horizontal_padding]}
+          leftIcon={{
+            name: 'lock-outline',
+            type: 'material-community',
+            color: '#888',
+          }}
+          rightIcon={{
+            name: shown ? 'eye-off-outline' : 'eye-outline',
+            color: '#888',
+            type: 'material-community',
+            onPress: () => setShown(!shown),
+          }}
+        />
+      ) : null}
       <View>
         <Button
-          title="Masuk"
+          title={mode === 'register' ? 'Daftar akun' : 'Masuk'}
           titleStyle={styles.dark}
           buttonStyle={[styles.pills_radius, styles.bg_primary]}
         />

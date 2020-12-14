@@ -9,7 +9,7 @@ import Constants from 'expo-constants';
 import loginScreenStyles from './styles';
 
 import AuthFormInput from '../../../components/AuthFormInput';
-import illustrations from '../../../assets/illustrations/mobile-login.png';
+import illustrations from '../../../assets/illustrations/having-fun.png';
 
 export default () => {
   const { navigate } = useNavigation();
@@ -22,12 +22,12 @@ export default () => {
     <View style={styles.container}>
       <ScrollView style={styles.padded_horizontal}>
         <Image style={styles.image} source={illustrations} />
-        <AuthFormInput />
+        <AuthFormInput mode="register" />
         <TouchableOpacity
           style={styles.top_spaced}
-          onPress={() => navigate('register')}
+          onPress={() => navigate('login')}
         >
-          <Text style={[styles.helper]}>Belum punya akun? Daftar disini</Text>
+          <Text style={[styles.helper]}>Sudah punya akun? Login disini</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
