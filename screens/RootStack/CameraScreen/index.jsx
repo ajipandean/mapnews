@@ -3,9 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
+import { Button } from 'react-native-elements';
 
 import styles from './styles';
 import consts from './consts';
+import useTheme from '../../../hooks/useTheme';
 import ImagesSlider from '../../../components/ImagesSlider';
 import CameraActions from '../../../components/CameraActions';
 import GoBackWithMessage from '../../../components/GoBackWithMessage';
@@ -16,6 +18,7 @@ export default function CameraScreen() {
   const [type, setType] = useState(consts.TYPE_BACK);
   const [flash, setFlash] = useState(consts.FLASH_OFF);
   const [autofocus] = useState(consts.AUTOFOCUS_ON);
+  const { colors } = useTheme();
   const s = styles();
 
   async function checkCameraPermission() {
@@ -40,6 +43,21 @@ export default function CameraScreen() {
         flashMode={flash}
         autoFocus={autofocus}
       >
+        <View style={s.top_container}>
+          <Button
+            loading={false}
+            iconRight
+            icon={{
+              name: 'arrow-right',
+              size: 20,
+              type: 'material-community',
+              color: colors.surface,
+            }}
+            titleStyle={{ color: colors.surface }}
+            type="clear"
+            title="Next"
+          />
+        </View>
         <View style={s.bottom_container}>
           <ImagesSlider />
           <CameraActions
