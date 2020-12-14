@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import Constants from 'expo-constants';
 
@@ -14,10 +14,12 @@ export default () => {
 
   return (
     <View style={styles.container}>
-      <LoginFormInput />
-      <TouchableOpacity style={styles.top_spaced}>
-        <Text style={[styles.helper]}>Belum punya akun? Daftar disini</Text>
-      </TouchableOpacity>
+      <ScrollView style={styles.padded_horizontal}>
+        <LoginFormInput />
+        <TouchableOpacity style={styles.top_spaced}>
+          <Text style={[styles.helper]}>Belum punya akun? Daftar disini</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
