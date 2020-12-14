@@ -7,7 +7,7 @@ export default ({ statusBarHeight }) => {
 
   return StyleSheet.create({
     top_spaced: { marginTop: spacing },
-    padded_horizontal: { paddingHorizontal: spacing * 2 },
+    padded_horizontal: { paddingHorizontal: spacing * 3 },
     container: {
       flex: 1,
       paddingTop: statusBarHeight,
