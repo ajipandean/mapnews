@@ -13,6 +13,12 @@ export default ({ statusBarHeight }) => {
       paddingTop: statusBarHeight,
       backgroundColor: colors.surface,
     },
+    image: {
+      width: '100%',
+      height: 260,
+      resizeMode: 'contain',
+      marginBottom: spacing,
+    },
     helper: {
       color: colors.placeholder,
       textAlign: 'center',
