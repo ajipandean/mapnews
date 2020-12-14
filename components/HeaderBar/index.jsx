@@ -1,17 +1,14 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Header, Text } from 'react-native-elements';
 
+import styles from './styles';
+
 export default function HeaderBar({ title, leftComponent, rightComponent }) {
-  const styles = StyleSheet.create({
-    container: {
-      elevation: 4,
-    },
-  });
+  const s = styles();
   return (
     <Header
       backgroundColor="white"
-      containerStyle={styles.container}
+      containerStyle={s.container}
       leftComponent={leftComponent}
       rightComponent={rightComponent}
       centerComponent={() => <Text h4>{title}</Text>}

@@ -9,7 +9,7 @@ import {
 import useToastError from '../../hooks/useToastError';
 import useTheme from '../../hooks/useTheme';
 import HeaderBar from '../../components/HeaderBar';
-import PostCardHorizontal from '../../components/Post/PostCardHorizontal';
+import PostCardHorizontal from '../../components/PostCardHorizontal';
 
 const { width } = Dimensions.get('window');
 const POST_CARD_WIDTH = width * 0.8;

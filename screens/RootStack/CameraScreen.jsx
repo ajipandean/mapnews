@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet } from 'react-native';
 
 import ImagesSlider from '../../components/ImagesSlider';
-import CameraActions from '../../components/Camera/CameraActions';
+import CameraActions from '../../components/CameraActions';
 import GoBackWithMessage from '../../components/GoBackWithMessage';
 
 const TYPE_BACK = Camera.Constants.Type.back;

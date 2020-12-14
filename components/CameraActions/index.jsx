@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
+import styles from './styles';
 import useTheme from '../../hooks/useTheme';
 
 export default function CameraActions({
@@ -10,28 +11,10 @@ export default function CameraActions({
   toggleCameraType,
 }) {
   const { colors } = useTheme();
-  const styles = StyleSheet.create({
-    actions: {
-      flexDirection: 'row',
-      paddingVertical: 24,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    capture: {
-      padding: 8,
-      marginHorizontal: 52,
-      borderRadius: 100,
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-    },
-    inner_capture: {
-      width: 65,
-      height: 65,
-      borderRadius: 100,
-      backgroundColor: colors.surface,
-    },
-  });
+  const s = styles();
+
   return (
-    <View style={styles.actions}>
+    <View style={s.actions}>
       <TouchableOpacity onPress={toggleFlashMode}>
         <Icon
           name={flashIcon}
@@ -40,8 +23,8 @@ export default function CameraActions({
           size={32}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.capture}>
-        <View style={styles.inner_capture} />
+      <TouchableOpacity style={s.capture}>
+        <View style={s.inner_capture} />
       </TouchableOpacity>
       <TouchableOpacity onPress={toggleCameraType}>
         <Icon
