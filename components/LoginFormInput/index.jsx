@@ -39,7 +39,11 @@ export default () => {
         }}
       />
       <View>
-        <Button title="Masuk" buttonStyle={styles.pills_radius} />
+        <Button
+          title="Masuk"
+          titleStyle={styles.dark}
+          buttonStyle={[styles.pills_radius, styles.bg_primary]}
+        />
       </View>
     </>
   );
