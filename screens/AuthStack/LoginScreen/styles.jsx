@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 import useTheme from '../../../hooks/useTheme';
 
 export default ({ statusBarHeight }) => {
-  const { colors } = useTheme();
+  const { colors, spacing } = useTheme();
 
   return StyleSheet.create({
-    top_spaced: { marginTop: 16 },
-    padded_horizontal: { paddingHorizontal: 16 },
+    top_spaced: { marginTop: spacing },
+    padded_horizontal: { paddingHorizontal: spacing * 2 },
     container: {
       flex: 1,
       paddingTop: statusBarHeight,
@@ -16,7 +16,7 @@ export default ({ statusBarHeight }) => {
     helper: {
       color: colors.placeholder,
       textAlign: 'center',
-      marginBottom: 24,
+      marginBottom: spacing * 2,
     },
   });
 };
