@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/stack';
 
 import authStackRegister from '../registers/authStackRegister';
+import rootStackRegister from '../registers/rootStackRegister';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -15,13 +16,28 @@ export default () => (
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
   >
-    {authStackRegister.map((screen) => (
-      <Screen
-        key={screen.name}
-        name={screen.name}
-        component={screen.component}
-        options={screen.options}
-      />
-    ))}
+    {false ? (
+      <>
+        {authStackRegister.map((screen) => (
+          <Screen
+            key={screen.name}
+            name={screen.name}
+            component={screen.component}
+            options={screen.options}
+          />
+        ))}
+      </>
+    ) : (
+      <>
+        {rootStackRegister.map((screen) => (
+          <Screen
+            key={screen.name}
+            name={screen.name}
+            component={screen.component}
+            options={screen.options}
+          />
+        ))}
+      </>
+    )}
   </Navigator>
 );
