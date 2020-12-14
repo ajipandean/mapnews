@@ -27,7 +27,9 @@ export default () => {
           style={styles.top_spaced}
           onPress={() => navigate('register')}
         >
-          <Text style={[styles.helper]}>Belum punya akun? Daftar disini</Text>
+          <Text style={[styles.helper, styles.top_spaced]}>
+            Belum punya akun? Daftar disini
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

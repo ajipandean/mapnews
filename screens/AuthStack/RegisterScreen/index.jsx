@@ -27,7 +27,9 @@ export default () => {
           style={styles.top_spaced}
           onPress={() => navigate('login')}
         >
-          <Text style={[styles.helper]}>Sudah punya akun? Login disini</Text>
+          <Text style={[styles.helper, styles.top_spaced]}>
+            Sudah punya akun? Login disini
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
