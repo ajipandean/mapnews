@@ -62,7 +62,7 @@ export default function CameraScreen() {
           />
         </View>
         <View style={s.bottom_container}>
-          <ImagesSlider />
+          <ImagesSlider photos={photos} />
           <CameraActions
             photos={photos}
             cameraRef={cameraRef}

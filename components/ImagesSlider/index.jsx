@@ -4,22 +4,24 @@ import { Image } from 'react-native-elements';
 
 import styles from './styles';
 
-export default function ImagesSlider() {
+export default function ImagesSlider({ photos }) {
   const s = styles();
   return (
     <View style={s.container}>
       <FlatList
         horizontal
+        data={photos}
         keyExtractor={(item, index) => `${item}-${index}`}
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={s.separator} />}
-        renderItem={() => (
+        renderItem={({ item }) => (
           <Image
             style={s.image}
             source={{
-              uri: 'https://www.btklsby.go.id/images/placeholder/basic.png',
+              uri:
+                item.uri
+                || 'https://www.btklsby.go.id/images/placeholder/basic.png',
             }}
           />
         )}
