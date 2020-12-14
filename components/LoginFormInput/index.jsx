@@ -22,7 +22,7 @@ export default () => {
         }}
       />
       <Input
-        secureTextEntry={shown}
+        secureTextEntry={!shown}
         label="Kata sandi"
         placeholder="********"
         containerStyle={[styles.no_horizontal_padding]}
