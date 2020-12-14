@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
 import loginFormInputStyles from './styles';
 
 export default () => {
+  const [shown, setShown] = useState(false);
+
   const styles = loginFormInputStyles();
 
   return (
@@ -20,19 +22,20 @@ export default () => {
         }}
       />
       <Input
+        secureTextEntry={shown}
         label="Kata sandi"
         placeholder="********"
-        containerStyle={styles.no_horizontal_padding}
+        containerStyle={[styles.no_horizontal_padding]}
         leftIcon={{
           name: 'lock-outline',
           type: 'material-community',
           color: '#888',
         }}
         rightIcon={{
-          name: 'eye-outline',
+          name: shown ? 'eye-off-outline' : 'eye-outline',
           color: '#888',
           type: 'material-community',
-          onPress: () => {},
+          onPress: () => setShown(!shown),
         }}
       />
       <View>
