@@ -1,9 +1,9 @@
-import UpdateProfileScreen from '../screens/RootStack/UpdateProfileScreen';
+import HelloWorld from '../screens/RootStack/HelloWorld';
 
 export default [
   {
-    name: 'update-profile',
-    component: UpdateProfileScreen,
+    name: 'hello-world',
+    component: HelloWorld,
     options: {},
   },
 ];
