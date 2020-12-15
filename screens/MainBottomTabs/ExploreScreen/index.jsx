@@ -1,4 +1,5 @@
 import React from 'react';
+import MapView from 'react-native-maps';
 import { View } from 'react-native';
 import { Text } from 'react-native-elements';
 
@@ -9,7 +10,7 @@ export default () => {
 
   return (
     <View style={styles.container}>
-      <Text>Explore screen</Text>
+      <MapView style={styles.map} />
     </View>
   );
 };
