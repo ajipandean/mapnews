@@ -7,7 +7,7 @@ import loginFormInputStyles from './styles';
 import AuthContext from '../../contexts/authContext';
 
 export default ({ mode }) => {
-  const { register } = useContext(AuthContext);
+  const { register, login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -16,13 +16,29 @@ export default ({ mode }) => {
 
   const styles = loginFormInputStyles();
 
+  const validateInput = () => {
+    if (email.length <= 0) throw new Error('Email cannot be empty');
+    if (password.length <= 0) throw new Error('Password cannot be empty');
+    if (mode === 'register') {
+      if (confirmPassword !== password) throw new Error("Confirm password doesn't match");
+    }
+  };
   const handleRegister = async () => {
     setLoading(true);
     try {
-      if (email.length <= 0) throw new Error('Email cannot be empty');
-      if (password.length <= 0) throw new Error('Password cannot be empty');
-      if (confirmPassword !== password) throw new Error("Confirm password doesn't match");
+      validateInput();
       await register(email, password);
+    } catch (err) {
+      toast(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleLogin = async () => {
+    setLoading(true);
+    try {
+      validateInput();
+      await login(email, password);
     } catch (err) {
       toast(err.message);
     } finally {
@@ -52,7 +68,7 @@ export default ({ mode }) => {
         label="Kata sandi"
         placeholder="********"
         textContentType="password"
-        returnKeyType={mode === 'register' ? 'next' : 'send'}
+        returnKeyType={mode === 'register' ? 'next' : 'go'}
         containerStyle={[styles.no_horizontal_padding]}
         value={password}
         onChangeText={(v) => setPassword(v)}
@@ -74,7 +90,7 @@ export default ({ mode }) => {
           label="Konfirmasi kata sandi"
           placeholder="********"
           textContentType="newPassword"
-          returnKeyType="send"
+          returnKeyType="go"
           containerStyle={[styles.no_horizontal_padding]}
           value={confirmPassword}
           onChangeText={(v) => setConfirmPassword(v)}
@@ -97,7 +113,7 @@ export default ({ mode }) => {
           title={mode === 'register' ? 'Daftar akun' : 'Masuk'}
           titleStyle={styles.dark}
           buttonStyle={[styles.pills_radius, styles.bg_primary]}
-          onPress={handleRegister}
+          onPress={mode === 'register' ? handleRegister : handleLogin}
         />
       </View>
     </>

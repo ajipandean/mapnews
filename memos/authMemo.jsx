@@ -17,4 +17,16 @@ export default (dispatch) => useMemo(() => ({
       toast(err.message);
     }
   },
+  login: async (email, password) => {
+    try {
+      const data = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      const { uid } = data.user;
+      await AsyncStorage.setItem('uid', uid);
+      dispatch({ type: 'LOGIN', uid });
+    } catch (err) {
+      toast(err.message);
+    }
+  },
 }));
