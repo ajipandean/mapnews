@@ -10,6 +10,7 @@ export default () => {
       flex: 1,
       paddingHorizontal: spacing * 3,
       justifyContent: 'center',
+      backgroundColor: colors.surface,
     },
     button: {
       borderRadius: radius.pills,
