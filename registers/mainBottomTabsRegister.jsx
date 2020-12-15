@@ -4,6 +4,12 @@ export default [
   {
     name: 'explore',
     component: ExploreScreen,
-    options: {},
+    icon: {
+      active: 'map',
+      inactive: 'map-outline',
+    },
+    options: {
+      title: 'Jelajah',
+    },
   },
 ];
