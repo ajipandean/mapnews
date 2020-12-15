@@ -42,7 +42,6 @@ export default () => {
   useEffect(() => {
     const restoreUid = async () => {
       try {
-        await AsyncStorage.removeItem('uid');
         const uid = await AsyncStorage.getItem('uid');
         dispatch({ type: 'RESTORE_UID', uid });
       } catch (err) {

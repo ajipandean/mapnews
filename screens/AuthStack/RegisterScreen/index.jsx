@@ -22,7 +22,7 @@ export default () => {
     <View style={styles.container}>
       <ScrollView style={styles.padded_horizontal}>
         <Image style={styles.image} source={illustrations} />
-        <AuthFormInput mode="register" />
+        <AuthFormInput mode="register" navigate={navigate} />
         <TouchableOpacity
           style={styles.top_spaced}
           onPress={() => navigate('login')}

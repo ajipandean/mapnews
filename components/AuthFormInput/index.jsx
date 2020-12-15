@@ -6,7 +6,7 @@ import toast from '../../helpers/toast';
 import loginFormInputStyles from './styles';
 import AuthContext from '../../contexts/authContext';
 
-export default ({ mode }) => {
+export default ({ mode, navigate }) => {
   const { register, login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +28,7 @@ export default ({ mode }) => {
     try {
       validateInput();
       await register(email, password);
+      navigate('update-profile');
     } catch (err) {
       toast(err.message);
     } finally {
