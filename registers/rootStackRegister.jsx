@@ -1,9 +1,9 @@
-import HelloWorld from '../screens/RootStack/HelloWorld';
+import MainBottomTabsNavigation from '../navigations/MainBottomTabsNavigation';
 
 export default [
   {
-    name: 'hello-world',
-    component: HelloWorld,
+    name: 'main-bottom-tabs',
+    component: MainBottomTabsNavigation,
     options: {},
   },
 ];
