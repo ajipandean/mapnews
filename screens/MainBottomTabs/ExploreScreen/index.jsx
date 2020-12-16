@@ -1,8 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import MapView from 'react-native-maps';
+import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
-import { Icon, Header, Text } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 import exploreScreenStyles from './styles';
 import useTheme from '../../../hooks/useTheme';
@@ -15,11 +15,6 @@ export default () => {
   return (
     <View style={styles.container}>
       <MapView style={styles.map} />
-      <Header
-        backgroundColor="transparent"
-        containerStyle={styles.header}
-        centerComponent={() => <Text h4>Mapnews</Text>}
-      />
       <Icon
         raised
         reverse
@@ -30,7 +25,7 @@ export default () => {
         containerStyle={styles.icon_button}
         onPress={() => console.log('Add button hitted')}
       />
-      <StatusBar style="dark" />
+      <StatusBar hidden={false} style="dark" />
     </View>
   );
 };
