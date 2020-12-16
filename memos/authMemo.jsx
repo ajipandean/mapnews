@@ -29,4 +29,13 @@ export default (dispatch) => useMemo(() => ({
       toast(err.message);
     }
   },
+  logout: async () => {
+    try {
+      await AsyncStorage.removeItem('uid');
+      await firebase.auth().signOut();
+      dispatch({ type: 'LOGOUT', uid: null });
+    } catch (err) {
+      toast(err.message);
+    }
+  },
 }));
