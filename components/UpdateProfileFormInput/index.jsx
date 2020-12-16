@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
-import { Avatar, Accessory, Input } from 'react-native-elements';
+import { Avatar, Input } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 
 import useTheme from '../../hooks/useTheme';
@@ -52,9 +52,7 @@ export default ({
         size={100}
         onPress={handlePickPhoto}
         source={{ uri: photo || avatarPlaceholder }}
-      >
-        <Accessory size={32} />
-      </Avatar>
+      />
       <Input
         label="Nama pengguna"
         placeholder="Aji Pandean"
