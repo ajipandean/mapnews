@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { Text, Header } from 'react-native-elements';
 
@@ -14,6 +14,7 @@ export default () => {
   const { colors } = useTheme();
   const { navigate } = useNavigation();
   const { logout } = useContext(AuthContext);
+  const isFocused = useIsFocused();
   const [user, setUser] = useState({});
 
   const styles = profileScreenStyles();
@@ -23,7 +24,7 @@ export default () => {
       setUser(u);
     });
     return () => unsubscribe();
-  }, []);
+  }, [isFocused]);
 
   const handleLogout = async () => {
     try {

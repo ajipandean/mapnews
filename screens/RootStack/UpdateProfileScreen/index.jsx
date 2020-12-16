@@ -1,53 +1,77 @@
 import React, { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
-import {
-  Avatar, Accessory, Input, Button,
-} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import updateProfileScreenStyles from './styles';
-import useTheme from '../../../hooks/useTheme';
+import firebase from '../../../firebase.config';
+import toast from '../../../helpers/toast';
+import UpdateProfileFormInput from '../../../components/UpdateProfileFormInput';
 
 export default () => {
-  const { colors } = useTheme();
   const { params } = useRoute();
+  const { navigate } = useNavigation();
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [photo, setPhoto] = useState(params.user.photoURL);
   const [username, setUsername] = useState(params.user.displayName);
 
   const styles = updateProfileScreenStyles();
-  const avatarPlaceholder = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
+
+  const handleUpdateProfile = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(photo);
+      const blob = await response.blob();
+      const formattedUsername = username.split(' ').join('');
+      const ref = firebase
+        .storage()
+        .ref('photo_profile')
+        .child(`${Date.now()}_${formattedUsername}.jpg`);
+      const uploadTask = ref.put(blob, { contentType: 'image/jpeg' });
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        },
+        (err) => {
+          throw new Error(err);
+        },
+        async () => {
+          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+          await params.user.updateProfile({
+            photoURL: downloadURL,
+            displayName: username,
+          });
+          navigate('main-bottom-tabs', { screen: 'profile' });
+        },
+      );
+    } catch (err) {
+      toast(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.padded_horizontal}>
-        <View style={[styles.center_horizontal, styles.margin_top]}>
-          <Avatar
-            rounded
-            size={100}
-            onPress={() => {}}
-            source={{ uri: photo || avatarPlaceholder }}
-          >
-            <Accessory size={32} />
-          </Avatar>
-          <Input
-            label="Nama pengguna"
-            placeholder="Aji Pandean"
-            value={username}
-            containerStyle={[styles.no_horizontal_padding, styles.top_spaced]}
-            leftIcon={{
-              name: 'account',
-              type: 'material-community',
-              color: colors.placeholder,
-            }}
-            rightIcon={{
-              name: 'dice-6',
-              color: '#888',
-              type: 'material-community',
-              onPress: () => {},
-            }}
-          />
-        </View>
-        <Button title="Update" buttonStyle={styles.button} />
+        <UpdateProfileFormInput
+          photo={photo}
+          username={username}
+          setPhoto={setPhoto}
+          setUsername={setUsername}
+        />
+        <Button
+          loading={loading}
+          title={
+            progress > 0
+              ? `Memproses... ${Math.ceil(progress)}%`
+              : 'Simpan perubahan'
+          }
+          buttonStyle={styles.button}
+          onPress={handleUpdateProfile}
+        />
       </ScrollView>
     </View>
   );
