@@ -16,7 +16,12 @@ export default () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.padded_horizontal}>
-        <UpdateProfileFormInput photo={photo} username={username} />
+        <UpdateProfileFormInput
+          photo={photo}
+          username={username}
+          setPhoto={setPhoto}
+          setUsername={setUsername}
+        />
         <Button title="Update" buttonStyle={styles.button} />
       </ScrollView>
     </View>
