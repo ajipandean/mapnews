@@ -14,5 +14,10 @@ export default () => {
       borderRadius: radius.pills,
     },
     padded_horizontal: { paddingHorizontal: spacing * 3 },
+    state: {
+      color: colors.placeholder,
+      marginTop: spacing + 4,
+      textAlign: 'center',
+    },
   });
 };

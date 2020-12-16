@@ -12,6 +12,7 @@ export default () => {
   const { params } = useRoute();
   const { navigate } = useNavigation();
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [photo, setPhoto] = useState(params.user.photoURL);
   const [username, setUsername] = useState(params.user.displayName);
 
@@ -27,13 +28,24 @@ export default () => {
         .storage()
         .ref('photo_profile')
         .child(`${Date.now()}_${formattedUsername}.jpg`);
-      const snapshot = await ref.put(blob, { contentType: 'image/jpeg' });
-      const downloadURL = await snapshot.ref.getDownloadURL();
-      await params.user.updateProfile({
-        photoURL: downloadURL,
-        displayName: username,
-      });
-      navigate('main-bottom-tabs', { screen: 'profile' });
+      const uploadTask = ref.put(blob, { contentType: 'image/jpeg' });
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        },
+        (err) => {
+          throw new Error(err);
+        },
+        async () => {
+          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+          await params.user.updateProfile({
+            photoURL: downloadURL,
+            displayName: username,
+          });
+          navigate('main-bottom-tabs', { screen: 'profile' });
+        },
+      );
     } catch (err) {
       toast(err.message);
     } finally {
@@ -52,7 +64,11 @@ export default () => {
         />
         <Button
           loading={loading}
-          title="Update"
+          title={
+            progress > 0
+              ? `Memproses... ${Math.ceil(progress)}%`
+              : 'Simpan perubahan'
+          }
           buttonStyle={styles.button}
           onPress={handleUpdateProfile}
         />
