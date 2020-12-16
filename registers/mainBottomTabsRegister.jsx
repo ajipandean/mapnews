@@ -1,4 +1,5 @@
 import ExploreScreen from '../screens/MainBottomTabs/ExploreScreen';
+import ProfileScreen from '../screens/MainBottomTabs/ProfileScreen';
 
 export default [
   {
@@ -10,6 +11,17 @@ export default [
     },
     options: {
       title: 'Jelajah',
+    },
+  },
+  {
+    name: 'profile',
+    component: ProfileScreen,
+    icon: {
+      active: 'account-circle',
+      inactive: 'account-circle-outline',
+    },
+    options: {
+      title: 'Profil',
     },
   },
 ];
