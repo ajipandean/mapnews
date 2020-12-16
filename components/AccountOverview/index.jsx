@@ -4,7 +4,7 @@ import { Text, Avatar, Button } from 'react-native-elements';
 
 import accountOverviewStyles from './styles';
 
-export default ({ user }) => {
+export default ({ user, navigate }) => {
   const styles = accountOverviewStyles();
   const avatarPlaceholder = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
 
@@ -25,7 +25,7 @@ export default ({ user }) => {
         title="Ubah profil"
         buttonStyle={styles.button}
         containerStyle={[styles.compact]}
-        onPress={() => {}}
+        onPress={() => navigate('update-profile', { user })}
       />
     </View>
   );
