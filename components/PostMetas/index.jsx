@@ -1,30 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ListItem, Avatar, Icon } from 'react-native-elements';
 
-import firebase from '../../firebase.config';
 import useTheme from '../../hooks/useTheme';
 
-export default () => {
+export default ({ date, user }) => {
   const { colors } = useTheme();
-  const [user, setUser] = useState({});
 
   const metas = [
     {
-      icon: 'calendar',
-      title: 'Selasa, 23 April 2020',
+      icon: 'crosshairs-gps',
+      title: 'Lokasi Anda saat ini',
     },
     {
-      icon: 'crosshairs-gps',
-      title: 'Location will be set to your current location',
+      icon: 'calendar',
+      title: date,
     },
   ];
-
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((u) => {
-      setUser(u);
-    });
-    return () => unsubscribe();
-  }, []);
 
   return (
     <>
