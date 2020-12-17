@@ -1,11 +1,12 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import createPostScreenStyles from './styles';
 import CreatePostFormInput from '../../../components/CreatePostFormInput';
 import PhotoPreview from '../../../components/PhotoPreview';
+import PostMetas from '../../../components/PostMetas';
 
 export default () => {
   const navigation = useNavigation();
@@ -31,8 +32,8 @@ export default () => {
           setTitle={setTitle}
           setDesc={setDesc}
         />
+        <PostMetas user={{}} />
         <PhotoPreview result={params.result} />
-        <Text>Create post screen</Text>
       </ScrollView>
     </View>
   );
