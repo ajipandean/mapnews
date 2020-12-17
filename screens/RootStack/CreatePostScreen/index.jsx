@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import * as Location from 'expo-location';
 import Moment from 'moment';
 
 import createPostScreenStyles from './styles';
@@ -18,6 +19,7 @@ export default () => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [user, setUser] = useState({});
+  const [location, setLocation] = useState({});
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -47,13 +49,10 @@ export default () => {
             const db = firebase.firestore();
             await db.collection('posts').add({
               title,
+              location,
+              user,
               description: desc,
               uploaded_at: date,
-              location: {
-                lat: 0,
-                lon: 0,
-              },
-              user,
               photo: downloadURL,
             });
           } catch (err) {
@@ -88,6 +87,13 @@ export default () => {
         setUser({ displayName, photoURL });
       });
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const { coords } = await Location.getCurrentPositionAsync({});
+      setLocation(coords);
+    })();
   }, []);
 
   return (
