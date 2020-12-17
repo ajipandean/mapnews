@@ -14,8 +14,8 @@ export default () => {
   const { colors } = useTheme();
   const { navigate } = useNavigation();
   const { logout } = useContext(AuthContext);
-  const isFocused = useIsFocused();
   const [user, setUser] = useState({});
+  const isFocused = useIsFocused();
 
   const styles = profileScreenStyles();
 
