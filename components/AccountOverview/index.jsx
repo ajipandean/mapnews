@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { Text, Avatar, Button } from 'react-native-elements';
 
 import accountOverviewStyles from './styles';
@@ -14,6 +14,8 @@ export default ({ user, navigate }) => {
       <Avatar
         rounded
         size={100}
+        placeholderStyle={{ backgroundColor: '#fff' }}
+        renderPlaceholderContent={<ActivityIndicator color="blue" size={24} />}
         source={{ uri: user.photoURL || avatarPlaceholder }}
       />
       <View style={[styles.margined_vertical, styles.center_horizontal]}>
