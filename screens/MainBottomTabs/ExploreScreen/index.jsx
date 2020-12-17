@@ -25,8 +25,7 @@ export default () => {
         aspect: [1, 1],
         quality: 1,
       });
-      console.log(result);
-      // if results is got, redirect to imagepreivew screen
+      navigate('create-post', { result });
     } catch (err) {
       toast(err.message);
     }
