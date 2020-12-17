@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
 
 import exploreScreenStyles from './styles';
 import useTheme from '../../../hooks/useTheme';
@@ -18,14 +19,16 @@ export default () => {
 
   const handleRedirectToCamera = async () => {
     try {
-      const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-      if (!granted) throw new Error('No access to camera');
+      const location = await Location.requestPermissionsAsync();
+      const gallery = await ImagePicker.requestCameraPermissionsAsync();
+      if (!gallery.granted) throw new Error('No access to camera');
+      if (!location.granted) throw new Error('No access to user location');
       const result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
       });
-      navigate('create-post', { result });
+      if (!result.cancelled) navigate('create-post', { result });
     } catch (err) {
       toast(err.message);
     }
