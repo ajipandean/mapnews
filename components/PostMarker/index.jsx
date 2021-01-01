@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ Marker, post }) => (
+export default ({ Marker, post, navigate }) => (
   <Marker
     title={post.title}
     description={post.description}
@@ -8,5 +8,6 @@ export default ({ Marker, post }) => (
       latitude: post.location.latitude,
       longitude: post.location.longitude,
     }}
+    onCalloutPress={() => navigate('post-detail', { post })}
   />
 );

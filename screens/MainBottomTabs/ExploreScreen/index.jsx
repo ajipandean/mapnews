@@ -17,6 +17,7 @@ export default () => {
   const { colors } = useTheme();
   const { navigate } = useNavigation();
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const styles = exploreScreenStyles();
 
@@ -38,6 +39,7 @@ export default () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const ref = firebase.firestore();
     ref
       .collection('posts')
@@ -45,16 +47,17 @@ export default () => {
       .then((snapshot) => {
         const container = [];
         snapshot.forEach((doc) => {
-          container.push(doc.data());
+          container.push({ id: doc.id, ...doc.data() });
         });
         setPosts(container);
       })
-      .catch((err) => toast(err.message));
+      .catch((err) => toast(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <View style={styles.container}>
-      {posts.length <= 0 ? (
+      {loading ? (
         <View style={styles.loading}>
           <ActivityIndicator size={52} color={colors.primary} />
         </View>
@@ -66,6 +69,7 @@ export default () => {
                 key={`post-${index}`}
                 Marker={MapView.Marker}
                 post={post}
+                navigate={navigate}
               />
             ))}
           </MapView>
