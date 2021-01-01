@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import useTheme from '../../../hooks/useTheme';
 
 export default (width) => {
-  const { colors } = useTheme();
+  const { colors, spacing } = useTheme();
 
   return StyleSheet.create({
     container: {
@@ -20,6 +20,17 @@ export default (width) => {
       width: '100%',
       height: '100%',
       resizeMode: 'contain',
+    },
+    content_wrapper: {
+      padding: spacing * 2,
+    },
+    content_title: {
+      fontWeight: 'bold',
+      fontSize: 24,
+      marginBottom: spacing,
+    },
+    content_desc: {
+      lineHeight: 22,
     },
   });
 };
