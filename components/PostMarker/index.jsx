@@ -8,6 +8,6 @@ export default ({ Marker, post, navigate }) => (
       latitude: post.location.latitude,
       longitude: post.location.longitude,
     }}
-    onCalloutPress={() => navigate('post-detail')}
+    onCalloutPress={() => navigate('post-detail', { post })}
   />
 );

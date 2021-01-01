@@ -27,9 +27,9 @@ export default (width) => {
     content_title: {
       fontWeight: 'bold',
       fontSize: 24,
-      marginBottom: spacing,
     },
     content_desc: {
+      marginTop: spacing,
       lineHeight: 22,
     },
   });

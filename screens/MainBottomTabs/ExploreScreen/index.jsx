@@ -45,7 +45,7 @@ export default () => {
       .then((snapshot) => {
         const container = [];
         snapshot.forEach((doc) => {
-          container.push(doc.data());
+          container.push({ id: doc.id, ...doc.data() });
         });
         setPosts(container);
       })
