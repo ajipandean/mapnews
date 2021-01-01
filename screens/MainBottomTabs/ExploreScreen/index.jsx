@@ -66,6 +66,7 @@ export default () => {
                 key={`post-${index}`}
                 Marker={MapView.Marker}
                 post={post}
+                navigate={navigate}
               />
             ))}
           </MapView>
