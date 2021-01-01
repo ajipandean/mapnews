@@ -28,6 +28,6 @@ export default [
   {
     name: 'post-detail',
     component: PostDetailScreen,
-    options: {},
+    options: { headerShown: true, title: null },
   },
 ];
