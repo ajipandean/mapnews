@@ -41,18 +41,16 @@ export default () => {
   useEffect(() => {
     setLoading(true);
     const ref = firebase.firestore();
-    ref
-      .collection('posts')
-      .get()
-      .then((snapshot) => {
-        const container = [];
-        snapshot.forEach((doc) => {
-          container.push({ id: doc.id, ...doc.data() });
-        });
-        setPosts(container);
-      })
-      .catch((err) => toast(err.message))
-      .finally(() => setLoading(false));
+    const unsubscribe = ref.collection('posts').onSnapshot((snapshot) => {
+      const container = [];
+      snapshot.forEach((doc) => {
+        container.push({ id: doc.id, ...doc.data() });
+      });
+      setPosts(container);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
