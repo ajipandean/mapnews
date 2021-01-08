@@ -42,7 +42,11 @@ const PostDetailScreen = () => {
     navigation.setOptions({
       headerRight: () => (
         <View style={{ flexDirection: 'row' }}>
-          <Button title="Ubah" type="clear" />
+          <Button
+            title="Ubah"
+            type="clear"
+            onPress={() => navigation.navigate('update-post', { post: params.post })}
+          />
           <Button title="Hapus" type="clear" loading={deleteLoading} onPress={handleDeletePost} />
         </View>
       ),
